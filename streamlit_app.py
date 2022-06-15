@@ -1,5 +1,6 @@
 import streamlit
 import pandas
+import requests
 
 # Unicode ref: https://unicode.org/emoji/charts/emoji-list.html#1f4aa
 
@@ -15,3 +16,6 @@ fruits_selected = streamlit.multiselect("Pick something:", list(my_fruit_list.in
                                             ['Avocado', 'Strawberries'])
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
+
+fr_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+streamlit.text(fr_response)
