@@ -1,6 +1,7 @@
 import streamlit
 import pandas
 import requests
+import snowflake.connector
 
 # Unicode ref: https://unicode.org/emoji/charts/emoji-list.html#1f4aa
 
