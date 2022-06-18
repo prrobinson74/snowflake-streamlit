@@ -2,7 +2,7 @@ import streamlit
 import pandas
 import requests
 import snowflake.connector
-import urllib.error import URLError
+from urllib.error import URLError
 
 # Unicode ref: https://unicode.org/emoji/charts/emoji-list.html#1f4aa
 
