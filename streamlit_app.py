@@ -2,6 +2,7 @@ import streamlit
 import pandas
 import requests
 import snowflake.connector
+import urllib.error import URLError
 
 # Unicode ref: https://unicode.org/emoji/charts/emoji-list.html#1f4aa
 
@@ -25,6 +26,8 @@ fr_response = requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)
 fr_normalised = pandas.json_normalize(fr_response.json())
 streamlit.dataframe(fr_normalised)
 
+streamlit.stop()
+
 my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("select * from fruit_load_list")
@@ -33,3 +36,4 @@ streamlit.text("The fruit load list contains:")
 streamlit.dataframe(my_data_rows)
 
 add_my_fruit = streamlit.text_input("What fruit would you like to add?", "kiwi")
+my_cur.execute("INSERT INTO fruit_list VALUES ('from streamlit')")
